@@ -1,10 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
+import {createStore, combineReducers} from "redux";
 import App from "./App";
 import reducer from "./reducers/anecdoteReducer";
+import latestReducer from "./reducers/latestReducer";
 
-const store = createStore(reducer);
+const joinedReducer = combineReducers({
+  anecdotes: reducer,
+  latest: latestReducer
+});
+
+const store = createStore(joinedReducer);
 
 const render = () => {
   ReactDOM.render(<App store={store} />, document.getElementById("root"));

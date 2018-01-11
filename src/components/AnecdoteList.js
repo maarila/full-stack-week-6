@@ -3,7 +3,7 @@ import {addingVote} from "../reducers/anecdoteReducer";
 
 class AnecdoteList extends React.Component {
   render() {
-    const anecdotes = this.props.store.getState();
+    const anecdotes = this.props.store.getState().anecdotes.anecdotes;
     return (
       <div>
         <h2>Anecdotes</h2>
