@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/routed-anecdotes/node_modules
 
 # testing
 /coverage
