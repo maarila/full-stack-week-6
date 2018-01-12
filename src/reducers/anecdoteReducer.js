@@ -1,13 +1,12 @@
-const getId = () => (100000 * Math.random()).toFixed(0);
-
 const reducer = (store = [], action) => {
   switch (action.type) {
     case "VOTE":
       const old = store.filter((a) => a.id !== action.id);
       const voted = store.find((a) => a.id === action.id);
+
       return [...old, {...voted, votes: voted.votes + 1}];
     case "CREATE":
-      return [...store, {content: action.content, id: getId(), votes: 0}];
+      return [...store, action.content];
     case "INIT_ANECDOTES":
       return action.data;
     default:
