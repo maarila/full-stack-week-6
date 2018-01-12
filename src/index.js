@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore, combineReducers} from "redux";
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import thunk from "redux-thunk";
 import App from "./App";
 import {Provider} from "react-redux";
 import reducer from "./reducers/anecdoteReducer";
@@ -13,7 +14,7 @@ const joinedReducer = combineReducers({
   filter: filterReducer
 });
 
-const store = createStore(joinedReducer);
+const store = createStore(joinedReducer, applyMiddleware(thunk));
 
 const render = () => {
   ReactDOM.render(
