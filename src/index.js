@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {createStore, combineReducers} from "redux";
 import App from "./App";
+import {Provider} from "react-redux";
 import reducer from "./reducers/anecdoteReducer";
 import latestReducer from "./reducers/latestReducer";
 import filterReducer from "./reducers/filterReducer";
@@ -15,7 +16,12 @@ const joinedReducer = combineReducers({
 const store = createStore(joinedReducer);
 
 const render = () => {
-  ReactDOM.render(<App store={store} />, document.getElementById("root"));
+  ReactDOM.render(
+    <Provider store={store}>
+      <App store={store}/>
+    </Provider>,
+    document.getElementById("root")
+  );
 };
 
 render();

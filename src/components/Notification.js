@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 
 class Notification extends React.Component {
   render() {
@@ -7,12 +8,17 @@ class Notification extends React.Component {
       padding: 10,
       borderWidth: 1
     };
-    if (this.props.store.getState().latest !== null) {
-      
-      return <div style={style}>{this.props.store.getState().latest}</div>;
+    if (this.props.latest !== null) {
+      return <div style={style}>{this.props.latest}</div>;
     }
-    return null
+    return null;
   }
 }
 
-export default Notification;
+const mapStateToProps = (state) => {
+  return {
+    latest: state.latest
+  };
+};
+
+export default connect(mapStateToProps)(Notification);
