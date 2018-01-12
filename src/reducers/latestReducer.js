@@ -2,10 +2,8 @@ const initialState = null;
 
 const latestReducer = (store = initialState, action) => {
   switch (action.type) {
-    case "CREATE":
-      return `Added the anecdote "${action.content}"`;
     case "NOTIFY_VOTE":
-      return `You voted "${action.content}"`;
+      return action.content;
     case "REMOVE":
       return null;
     default:
@@ -13,21 +11,19 @@ const latestReducer = (store = initialState, action) => {
   }
 };
 
-export const latestChange = (content) => {
-  return {
-    type: "CREATE",
-    content
+export const notify = (content, timeInSecs) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "NOTIFY_VOTE",
+      content
+    });
+    setTimeout(() => {
+      dispatch(notificationRemoval());
+    }, timeInSecs * 1000);
   };
 };
 
-export const voteNotification = (content) => {
-  return {
-    type: "NOTIFY_VOTE",
-    content
-  };
-};
-
-export const notificationRemoval = () => {
+const notificationRemoval = () => {
   return {
     type: "REMOVE"
   };

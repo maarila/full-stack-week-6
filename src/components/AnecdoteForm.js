@@ -1,6 +1,6 @@
 import React from "react";
 import {createNew} from "../reducers/anecdoteReducer";
-import {notificationRemoval} from "../reducers/latestReducer";
+import {notify} from "../reducers/latestReducer";
 import {connect} from "react-redux";
 
 class AnecdoteForm extends React.Component {
@@ -9,9 +9,7 @@ class AnecdoteForm extends React.Component {
     const content = e.target.anecdote.value;
     e.target.anecdote.value = "";
     this.props.createNew(content);
-    setTimeout(() => {
-      this.props.notificationRemoval();
-    }, 5000);
+    this.props.notify(`Added the blog "${content}"`, 5);
   };
   render() {
     return (
@@ -28,4 +26,4 @@ class AnecdoteForm extends React.Component {
   }
 }
 
-export default connect(null, {createNew, notificationRemoval})(AnecdoteForm);
+export default connect(null, {createNew, notify})(AnecdoteForm);

@@ -2,17 +2,17 @@
   "anecdotes": [
     {
       "content": "If it hurts, do it more often",
-      "votes": 5,
+      "votes": 6,
       "id": "47145"
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
-      "votes": 1,
+      "votes": 2,
       "id": "21149"
     },
     {
       "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
-      "votes": 7,
+      "votes": 8,
       "id": "69581"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "content": "Premature optimization is the root of all evil.",
-      "votes": 4,
+      "votes": 7,
       "id": "25170"
     },
     {
@@ -32,28 +32,8 @@
     },
     {
       "content": "Adding everything reduces nothing",
-      "votes": 1,
+      "votes": 4,
       "id": "50905"
-    },
-    {
-      "content": "Trying new things is mandatory",
-      "id": "51972",
-      "votes": 0
-    },
-    {
-      "content": "Creating new",
-      "id": "112",
-      "votes": 0
-    },
-    {
-      "content": "Tryin stuff",
-      "id": "45496",
-      "votes": 0
-    },
-    {
-      "content": "Adding still new ones",
-      "id": "10381",
-      "votes": 0
     }
   ]
 }

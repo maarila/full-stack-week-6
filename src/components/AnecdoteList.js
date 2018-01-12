@@ -1,7 +1,7 @@
 import React from "react";
 import Filter from "./Filter";
 import {addVote} from "../reducers/anecdoteReducer";
-import {voteNotification, notificationRemoval} from "../reducers/latestReducer";
+import {notify} from "../reducers/latestReducer";
 import {connect} from "react-redux";
 
 class AnecdoteList extends React.Component {
@@ -12,10 +12,7 @@ class AnecdoteList extends React.Component {
         votes: previousVotes + 1
       };
       this.props.addVote(id, votedAnecdote);
-      this.props.voteNotification(votedAnecdote.content);
-      setTimeout(() => {
-        this.props.notificationRemoval();
-      }, 5000);
+      this.props.notify(`You voted "${content}"`, 5);
     };
   };
   render() {
@@ -60,6 +57,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   addVote,
-  voteNotification,
-  notificationRemoval
+  notify
 })(AnecdoteList);
