@@ -39,7 +39,7 @@ class AnecdoteList extends React.Component {
 }
 
 const anecdotesToShow = (anecdotes, filterer) => {
-  return anecdotes.anecdotes.filter((anecdote) =>
+  return anecdotes.filter((anecdote) =>
     anecdote.content.toLowerCase().includes(filterer.toLowerCase())
   );
 };
