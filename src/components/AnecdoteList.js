@@ -1,4 +1,5 @@
 import React from "react";
+import Filter from "./Filter";
 import {addingVote} from "../reducers/anecdoteReducer";
 import {voteNotification, notificationRemoval} from "../reducers/latestReducer";
 
@@ -20,6 +21,7 @@ class AnecdoteList extends React.Component {
     );
     return (
       <div>
+      <Filter />
         <h2>Anecdotes</h2>
         {anecdotesToShow.sort((a, b) => b.votes - a.votes).map((anecdote) => (
           <div key={anecdote.id}>
