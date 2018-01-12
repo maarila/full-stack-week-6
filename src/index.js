@@ -4,10 +4,12 @@ import {createStore, combineReducers} from "redux";
 import App from "./App";
 import reducer from "./reducers/anecdoteReducer";
 import latestReducer from "./reducers/latestReducer";
+import filterReducer from "./reducers/filterReducer";
 
 const joinedReducer = combineReducers({
   anecdotes: reducer,
-  latest: latestReducer
+  latest: latestReducer,
+  filter: filterReducer
 });
 
 const store = createStore(joinedReducer);

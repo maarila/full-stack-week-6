@@ -16,7 +16,8 @@ const initialState = {
       votes: 0
     }
   ],
-  latest: ""
+  latest: "",
+  filter: ""
 };
 
 const getId = () => (100000 * Math.random()).toFixed(0);
@@ -26,6 +27,7 @@ const reducer = (store = initialState, action) => {
     case "VOTE":
       const old = store.anecdotes.filter((a) => a.id !== action.id);
       const voted = store.anecdotes.find((a) => a.id === action.id);
+
       return {
         ...store,
         anecdotes: [...old, {...voted, votes: voted.votes + 1}]
