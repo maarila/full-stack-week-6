@@ -1,9 +1,8 @@
 import React from "react";
 import Filter from "./Filter";
-import {addingVote} from "../reducers/anecdoteReducer";
+import {addVote} from "../reducers/anecdoteReducer";
 import {voteNotification, notificationRemoval} from "../reducers/latestReducer";
 import {connect} from "react-redux";
-import anecdoteService from "../services/anecdotes";
 
 class AnecdoteList extends React.Component {
   handleClick = (id, content, previousVotes) => {
@@ -12,9 +11,8 @@ class AnecdoteList extends React.Component {
         content: content,
         votes: previousVotes + 1
       };
-      const updatedAnecdote = await anecdoteService.update(id, votedAnecdote);
-      this.props.addingVote(updatedAnecdote.id);
-      this.props.voteNotification(updatedAnecdote.content);
+      this.props.addVote(id, votedAnecdote);
+      this.props.voteNotification(votedAnecdote.content);
       setTimeout(() => {
         this.props.notificationRemoval();
       }, 5000);
@@ -61,7 +59,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  addingVote,
+  addVote,
   voteNotification,
   notificationRemoval
 })(AnecdoteList);
