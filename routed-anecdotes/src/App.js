@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Link, NavLink} from "react-router-dom";
-import {ListGroup, ListGroupItem} from "react-bootstrap";
+import {ListGroup, ListGroupItem, Grid, Row, Col} from "react-bootstrap";
 
 const Menu = () => (
   <div style={menuStyle}>
@@ -54,22 +54,38 @@ const Anecdote = ({anecdote}) => {
 const About = () => (
   <div>
     <h2>About anecdote app</h2>
-    <p>According to Wikipedia:</p>
-
-    <em>
-      An anecdote is a brief, revealing account of an individual person or an
-      incident. Occasionally humorous, anecdotes differ from jokes because their
-      primary purpose is not simply to provoke laughter but to reveal a truth
-      more general than the brief tale itself, such as to characterize a person
-      by delineating a specific quirk or trait, to communicate an abstract idea
-      about a person, place, or thing through the concrete details of a short
-      narrative. An anecdote is "a story with a point."
-    </em>
-
-    <p>
-      Software engineering is full of excellent anecdotes, at this app you can
-      find the best and add more.
-    </p>
+    <Grid>
+      <Row className="show-grid">
+        <Col sm={6} md={3} style={{width: 500}}>
+          <p>According to Wikipedia:</p>
+          <em>
+            An anecdote is a brief, revealing account of an individual person or
+            an incident. Occasionally humorous, anecdotes differ from jokes
+            because their primary purpose is not simply to provoke laughter but
+            to reveal a truth more general than the brief tale itself, such as
+            to characterize a person by delineating a specific quirk or trait,
+            to communicate an abstract idea about a person, place, or thing
+            through the concrete details of a short narrative. An anecdote is "a
+            story with a point."
+          </em>
+          <p>
+            Software engineering is full of excellent anecdotes, at this app you
+            can find the best and add more.
+          </p>
+        </Col>
+        <Col sm={6} md={3}>
+          <a
+            title="Alfred Edward Chalon [Public domain], via Wikimedia Commons"
+            href="https://commons.wikimedia.org/wiki/File%3AAda_Lovelace_portrait.jpg">
+            <img
+              width="256"
+              alt="Ada Lovelace portrait"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ada_Lovelace_portrait.jpg/256px-Ada_Lovelace_portrait.jpg"
+            />
+          </a>
+        </Col>
+      </Row>
+    </Grid>
   </div>
 );
 
