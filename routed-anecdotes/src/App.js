@@ -1,13 +1,27 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, NavLink} from "react-router-dom";
 
 const Menu = () => (
-  <div>
-    <Link to="/">anecdotes</Link>&nbsp;
-    <Link to="create">create new</Link>&nbsp;
-    <Link to="about">about</Link>&nbsp;
+  <div style={menuStyle}>
+    <NavLink exact to="/" activeStyle={activeStyle}>
+      Anecdotes
+    </NavLink>&nbsp;&nbsp;
+    <NavLink exact to="/create" activeStyle={activeStyle}>
+      Create new
+    </NavLink>&nbsp;&nbsp;
+    <NavLink exact to="/about" activeStyle={activeStyle}>
+      About
+    </NavLink>
   </div>
 );
+
+const activeStyle = {
+  fontWeight: "bold",
+  fontStyle: "italic",
+  backgroundColor: "lightblue",
+  paddingTop: 10,
+  paddingBottom: 10
+};
 
 const AnecdoteList = ({anecdotes}) => (
   <div>
@@ -81,20 +95,29 @@ const Notification = ({message}) => {
     </div>
   );
 };
-  const notificationStyle = {
-    borderStyle: "solid",
-    borderWidth: 2,
-    borderRadius: 7,
-    color: "darkgreen",
-    backgroundColor: "aquamarine",
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 15,
-    textIndent: 7,
-    width: 800
 
-  }
+const notificationStyle = {
+  borderStyle: "solid",
+  borderWidth: 2,
+  borderRadius: 7,
+  color: "darkgreen",
+  backgroundColor: "aquamarine",
+  padding: 10,
+  marginTop: 15,
+  textIndent: 7,
+  width: 800
+};
 
+const menuStyle = {
+  borderStyle: "solid",
+  borderWidth: 2,
+
+  backgroundColor: "lavender",
+  paddingTop: 10,
+  paddingBottom: 10,
+  textIndent: 7,
+  width: 800
+};
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -105,8 +128,6 @@ class CreateNew extends React.Component {
       info: ""
     };
   }
-
-
 
   handleChange = (e) => {
     // console.log(e.target.name, e.target.value);
