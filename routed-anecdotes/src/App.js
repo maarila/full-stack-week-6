@@ -24,13 +24,14 @@ const activeStyle = {
   paddingBottom: 10
 };
 
-const AnecdoteList = ({anecdotes}) => (
+const AnecdoteList = ({anecdotes, vote}) => (
   <div>
     <h2>Anecdotes</h2>
     <ListGroup>
       {anecdotes.map((anecdote) => (
         <ListGroupItem key={anecdote.id}>
-          <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content}</Link>
+          <Link to={`/anecdotes/${anecdote.id}`}>{anecdote.content} </Link>
+          <button onClick={vote(anecdote.id)}>vote</button>
         </ListGroupItem>
       ))}
     </ListGroup>
@@ -108,7 +109,7 @@ const Notification = ({message}) => {
   }
   return (
     <div style={notificationStyle}>
-      <div>A new anecdote "{message}" created!</div>
+      <div>{message}</div>
     </div>
   );
 };
@@ -142,7 +143,8 @@ class CreateNew extends React.Component {
     this.state = {
       content: "",
       author: "",
-      info: ""
+      info: "",
+      votes: 0
     };
   }
 
@@ -225,9 +227,11 @@ class App extends React.Component {
   }
 
   addNew = (anecdote) => {
-    anecdote.id = (Math.random() * 10000).toFixed(0);
+    anecdote.id = Number((Math.random() * 10000).toFixed(0));
     this.setState({anecdotes: this.state.anecdotes.concat(anecdote)});
-    this.setState({notification: anecdote.content});
+    this.setState({
+      notification: `A new anecdote "${anecdote.content}" created!`
+    });
     setTimeout(() => {
       this.setState({notification: null});
     }, 10000);
@@ -236,20 +240,25 @@ class App extends React.Component {
   anecdoteById = (id) => this.state.anecdotes.find((a) => a.id === Number(id));
 
   vote = (id) => {
-    const anecdote = this.anecdoteById(id);
+    return () => {
+      const anecdote = this.anecdoteById(id);
 
-    const voted = {
-      ...anecdote,
-      votes: anecdote.votes + 1
+      const voted = {
+        ...anecdote,
+        votes: anecdote.votes + 1
+      };
+
+      const anecdotes = this.state.anecdotes.map(
+        (a) => (a.id === id ? voted : a)
+      );
+
+      this.setState({anecdotes});
+      this.setState({notification: `You voted "${anecdote.content}"`});
+      setTimeout(() => {
+        this.setState({notification: null});
+      }, 4000);
     };
-
-    const anecdotes = this.state.anecdotes.map(
-      (a) => (a.id === id ? voted : a)
-    );
-
-    this.setState({anecdotes});
   };
-
   render() {
     return (
       <div className="container">
@@ -262,7 +271,12 @@ class App extends React.Component {
               <Route
                 exact
                 path="/"
-                render={() => <AnecdoteList anecdotes={this.state.anecdotes} />}
+                render={() => (
+                  <AnecdoteList
+                    anecdotes={this.state.anecdotes}
+                    vote={this.vote}
+                  />
+                )}
               />
               <Route path="/about" render={() => <About />} />
               <Route
