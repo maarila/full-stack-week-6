@@ -76,11 +76,25 @@ const Notification = ({message}) => {
     return null;
   }
   return (
-    <div>
+    <div style={notificationStyle}>
       <div>A new anecdote "{message}" created!</div>
     </div>
   );
 };
+  const notificationStyle = {
+    borderStyle: "solid",
+    borderWidth: 2,
+    borderRadius: 7,
+    color: "darkgreen",
+    backgroundColor: "aquamarine",
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 15,
+    textIndent: 7,
+    width: 800
+
+  }
+
 
 class CreateNew extends React.Component {
   constructor(props) {
@@ -91,6 +105,8 @@ class CreateNew extends React.Component {
       info: ""
     };
   }
+
+
 
   handleChange = (e) => {
     // console.log(e.target.name, e.target.value);
